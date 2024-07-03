@@ -37,11 +37,22 @@ while IFS=';' read -r usrname groups; do
 
   # Print the extracted information
   echo "***************************************************"
-  echo "Usrname: $usrname"
+  echo "Username: $usrname"
   echo "Groups:"
 
   # Create the user (if doesn't exist)
-  sudo useradd "$usrname" &>/dev/null  # Suppress output for user existence check
+  
+  # Attempt to create the user (suppress output)
+  if ! sudo useradd "$usrname" &>/dev/null; then
+    # User creation failed, log the error with date
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - Error creating user: $usrname" >> "$log_file"
+  else
+    # User creation successful, log the success with date
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - User created: $usrname" >> "$log_file"
+  fi
+
+
+  #sudo useradd "$usrname" &>/dev/null  # Suppress output for user existence check
   echo "$(date '+%Y-%m-%d %H:%M:%S') - Added user $usrname"
 
   password=$(tr -dc 'A-Za-z0-9!?%=' < /dev/urandom | head -c 10)
