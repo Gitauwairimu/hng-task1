@@ -10,7 +10,7 @@ fi
 tout_file="$1"
 
 log_file="/var/log/user_management.log"
-secrets_file="/var/secure/user_passwords.txt"
+secrets_file="/var/secure/user_passwords.cvs"
 
 # Check if log file exists
 if [[ ! -f "$log_file" ]]; then
@@ -54,19 +54,19 @@ while IFS=';' read -r usrname groups; do
 
   sudo mkdir -p /var/secure
   sudo chmod 700 /var/secure
-  sudo touch /var/secure/user_passwords.txt
-  sudo chmod 660 /var/secure/user_passwords.txt
-  sudo chmod u+rw /var/secure/user_passwords.txt
+  sudo touch /var/secure/user_passwords.cvs
+  sudo chmod 660 /var/secure/user_passwords.cvs
+  sudo chmod u+rw /var/secure/user_passwords.cvs
   sudo chown $USER:$USER /var/secure
 
 
   user=$(whoami)  # Get the currently logged-in username
-  sudo chown "$user:$user" /var/secure/user_passwords.txt  # Change owner and group
-  sudo chmod u+rw /var/secure/user_passwords.txt  # Grant read and write permissions to the owner (current user)
+  sudo chown "$user:$user" /var/secure/user_passwords.cvs  # Change owner and group
+  sudo chmod u+rw /var/secure/user_passwords.cvs  # Grant read and write permissions to the owner (current user)
 
   # Write username and password to file using here document (not recommended)
   # Log to a top-secret file
-  sudo echo "$usrname:$password" >> "/var/secure/user_passwords.txt"
+  sudo echo "$usrname:$password" >> "/var/secure/user_passwords.cvs"
 
   # Loop through each group separated by comma
   IFS=',' read -ra group_array <<< "$groups"
