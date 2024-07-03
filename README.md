@@ -1,7 +1,19 @@
 # User Management Script (user_manage.sh) - README
 
-This README provides information about user_manage.sh, a Bash script designed to automate user creation and group management.
-Functionality
+This README provides information about user_manage.sh, a Bash script designed to automate user creation and group management. This is towards fulfilment of the HNG Internship Program in which am taking part in the DevOps track.
+
+## Prerequisites
+- A modest knowledge of linux is required.
+- Access to Ubuntu linux system and its sudo privileges.
+- A text file with rows that contain user and groups they belong to, seperated by a semi-colon.
+
+Below is an example of the text file contents;
+    light; sudo,dev,www-data
+    idimma; sudo
+    mayowa; dev,www-data
+
+
+## Functionality
 
 The script automates user management tasks by processing a file containing user information (username and groups separated by semicolon).
 
