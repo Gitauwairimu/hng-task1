@@ -10,7 +10,7 @@ This README provides information about user_manage.sh, a Bash script designed to
 Below is an example of the text file contents;
 >    light; sudo,dev,www-data \
 >    idimma; sudo \
->    mayowa; dev,www-data \
+>    mayowa; dev,www-data 
 
 
 ## Functionality
