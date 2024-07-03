@@ -1,4 +1,4 @@
-* User Management Script (user_manage.sh) - README
+# User Management Script (user_manage.sh) - README
 
 This README provides information about user_manage.sh, a Bash script designed to automate user creation and group management.
 Functionality
@@ -7,19 +7,19 @@ The script automates user management tasks by processing a file containing user 
 
  Here's a breakdown of its actions for each user:
 
-** User Creation: Creates the user if it doesn't already exist (using sudo useradd).
-** Password Generation:
+## User Creation: Creates the user if it doesn't already exist (using sudo useradd).
+## Password Generation:
 
-    Generates a random password using /dev/urandom.
-    Assigns the password to the user with sudo chpasswd. (Security Concern: See below for important security information)
+   - Generates a random password using /dev/urandom.
+   - Assigns the password to the user with sudo chpasswd. (Security Concern: See below for important security information)
 
-** Group Management (Currently Disabled):
+## Group Management (Currently Disabled):
 
     (This functionality is commented out in the script)
-        Creates any missing groups specified for the user (using sudo groupadd).
-        Adds the user to each specified group (using sudo usermod -aG).
+       - Creates any missing groups specified for the user (using sudo groupadd).
+       - Adds the user to each specified group (using sudo usermod -aG).
 
-** Logging: Records actions with timestamps in a log file (/var/log/user_management.log).
+## Logging: Records actions with timestamps in a log file (/var/log/user_management.log).
 
 
 Important Security Consideration
