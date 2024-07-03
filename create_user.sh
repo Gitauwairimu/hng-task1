@@ -13,10 +13,12 @@ log_file="/var/log/user_management.log"
 secrets_file="/var/secure/user_passwords.cvs"
 
 # Check if log file exists
-if [[ ! -f "$log_file" ]]; then
-  # Create the log file with touch (or redirect empty output)
-  sudo touch "$log_file"  # OR  echo > "$log_file"
-
+if [[ -f "$log_file" ]]; then
+  echo "Log file '$log_file' already exists."
+else
+  echo "Log file '$log_file' to be created."
+  # Create the log file with touch
+  sudo touch "$log_file"
 fi
 
 
@@ -59,6 +61,7 @@ while IFS=';' read -r usrname groups; do
   sudo chmod u+rw /var/secure/user_passwords.cvs
   sudo chown $USER:$USER /var/secure
 
+  echo "$(date '+%Y-%m-%d %H:%M:%S') - Ensure secrets file and its permissions are set"
 
   user=$(whoami)  # Get the currently logged-in username
   sudo chown "$user:$user" /var/secure/user_passwords.cvs  # Change owner and group
@@ -67,6 +70,8 @@ while IFS=';' read -r usrname groups; do
   # Write username and password to file using here document (not recommended)
   # Log to a top-secret file
   sudo echo "$usrname:$password" >> "/var/secure/user_passwords.cvs"
+  echo "$(date '+%Y-%m-%d %H:%M:%S') - Log user and password to secrets file"
+
 
   # Loop through each group separated by comma
   IFS=',' read -ra group_array <<< "$groups"
