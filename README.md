@@ -8,9 +8,9 @@ This README provides information about user_manage.sh, a Bash script designed to
 - A text file with rows that contain user and groups they belong to, seperated by a semi-colon.
 
 Below is an example of the text file contents;
-    light; sudo,dev,www-data
-    idimma; sudo
-    mayowa; dev,www-data
+>    light; sudo,dev,www-data
+>    idimma; sudo
+>    mayowa; dev,www-data
 
 
 ## Functionality
